@@ -189,8 +189,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            Calculadora cal = new Calculadora();
+            @Override
             public void run() {
-                new Calculadora().setVisible(true);
+                cal.setLocationRelativeTo(null);
+                cal.setVisible(true);
             }
         });
     }
