@@ -43,9 +43,9 @@ LEXP::= LEXP:cadena1 EXP:cadena2 puntocoma {: RESULT = cadena1+ "\n" + postfija+
 
 start with INICIO;
 
-INICIO::= SUBINICIO:a {:setSalida(a);:} ;
-SUBINICIO::= SUBINICIO:a TERMINO:b SEMICOLON {:RESULT=a+"\n"+postfija+(flag ? "" :  " = "+b); postfija = "";:}
-| TERMINO:b SEMICOLON {:RESULT=postfija+(flag ? "" :  " = "+b);:};
+INICIO::= SUBINICIO:a {:setSalida(a);:};
+SUBINICIO::= SUBINICIO:a TERMINO:b SEMICOLON {:RESULT=a+"\n"+postfija+(flag ? "" :  " = "+b); postfija = "";flag=false;:}
+| TERMINO:b SEMICOLON {:RESULT=postfija+(flag ? "" :  " = "+b);postfija = "";flag=false;:};
 TERMINO::= TERMINO:a PLUS TERMINO:b {:if(!flag){RESULT=String.valueOf(Double.parseDouble(a+"")+Double.parseDouble(b+""));} postfija+=" + ";:} 
 |TERMINO:a MINUS TERMINO:b {:if(!flag){RESULT=String.valueOf(Double.parseDouble(a+"")-Double.parseDouble(b+""));} postfija+=" - ";:}
 |TERMINO:a PRODUCT TERMINO:b {:if(!flag){RESULT=String.valueOf(Double.parseDouble(a+"")*Double.parseDouble(b+""));} postfija+=" * ";:}
