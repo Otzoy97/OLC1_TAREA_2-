@@ -68,10 +68,12 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         txtInput.setColumns(20);
+        txtInput.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         txtInput.setRows(5);
         jScrollPane1.setViewportView(txtInput);
 
         txtOutput.setColumns(20);
+        txtOutput.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
         txtOutput.setRows(5);
         txtOutput.setEnabled(false);
         txtOutput.setOpaque(false);
