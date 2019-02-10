@@ -6,11 +6,13 @@
 package calculadora;
 
 import analizadores.*;
+import static analizadores.Scanner.Err;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author otzoy
@@ -32,24 +34,22 @@ public class Calculadora extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtAnalizar = new javax.swing.JTextArea();
         btnAnalizar = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtOutput = new javax.swing.JTextArea();
         btnLimpiar = new javax.swing.JButton();
-        brnInformar = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtInput = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtOutput = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtLog = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("[OLC]Tarea #2");
         setResizable(false);
-
-        txtAnalizar.setColumns(20);
-        txtAnalizar.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
-        txtAnalizar.setRows(5);
-        jScrollPane3.setViewportView(txtAnalizar);
 
         btnAnalizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnAnalizar.setText("Analizar");
@@ -59,11 +59,6 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        txtOutput.setColumns(20);
-        txtOutput.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
-        txtOutput.setRows(5);
-        jScrollPane4.setViewportView(txtOutput);
-
         btnLimpiar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,61 +67,98 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        brnInformar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        brnInformar.setText("Generar informe");
-        brnInformar.setToolTipText("");
+        txtInput.setColumns(20);
+        txtInput.setRows(5);
+        jScrollPane1.setViewportView(txtInput);
+
+        txtOutput.setColumns(20);
+        txtOutput.setRows(5);
+        txtOutput.setEnabled(false);
+        txtOutput.setOpaque(false);
+        jScrollPane2.setViewportView(txtOutput);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Analizador", jPanel2);
+
+        txtLog.setColumns(20);
+        txtLog.setRows(5);
+        jScrollPane6.setViewportView(txtLog);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Log", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
-            .addComponent(btnAnalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane4)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(brnInformar, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(brnInformar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-        this.txtAnalizar.setText("");
-        this.txtOutput.setText("");
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         // TODO add your handling code here:
-        String salida="";
-        analizadores.Scanner scan = new Scanner(new BufferedReader(new StringReader(this.txtAnalizar.getText())));
+        String errores = "";
+        analizadores.Scanner scan = new Scanner(new BufferedReader(new StringReader(this.txtInput.getText())));
+        errores += "----------Léxico----------\n" + (Err == null ? "" : Err);
         parser pr = new parser(scan);
         try {
             pr.parse();
-
         } catch (Exception ex) {
-            javax.swing.JOptionPane.showMessageDialog(this,ex.getMessage(),"Tarea 2",JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Tarea 2", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            errores += "\n----------Sintáctico----------\n" + (Err == null ? "" : Err);
         }
         txtOutput.setText(pr.salida);
-       
-        scan=null;
-        pr=null;
+        this.txtLog.setText(errores);
     }//GEN-LAST:event_btnAnalizarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        this.txtInput.setText("");
+        this.txtOutput.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,12 +196,16 @@ public class Calculadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton brnInformar;
     private javax.swing.JButton btnAnalizar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea txtAnalizar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea txtInput;
+    private javax.swing.JTextArea txtLog;
     private javax.swing.JTextArea txtOutput;
     // End of variables declaration//GEN-END:variables
 }
