@@ -121,11 +121,13 @@ public class parser extends java_cup.runtime.lr_parser {
     public static String postfija = "";
     public String salida = "";
 
+ @Override
     public void syntax_error (Symbol s){
-        Scanner.Err = "Error Leve. Línea " + (s.right+1) + " Columna " + (s.left+1) + ". Identificador " + s.value;
+        Scanner.Err = "Error Leve. Línea " + (s.right+1) + " Columna " + (s.left) + ". Identificador " + s.value;
     }
+ @Override
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
-        Scanner.Err = "Error Grave. Línea " + (s.right+1) + " Columna " + (s.left+1) + ". Identificador " + s.value;
+        Scanner.Err = "Error Grave. Línea " + (s.right+1) + " Columna " + (s.left) + ". Identificador " + s.value;
     }
     public void setSalida(Object cadena){
         System.out.println(cadena.toString());
