@@ -118,7 +118,6 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
     public boolean flag = false;
-    //public static Queue<Resultado> colaSalida = new LinkedList();
     public static String postfija = "";
     public String salida = "";
 
@@ -128,13 +127,9 @@ public class parser extends java_cup.runtime.lr_parser {
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
         Scanner.Err = "Error Grave. Línea " + (s.right+1) + " Columna " + (s.left+1) + ". Identificador " + s.value;
     }
-/*
-    public void encolar(Object a){
-        colaSalida.add(new Resultado(postfija, String.valueOf(a)));
-        postfija = "";
-    }*/
-    public void setSalida(String cadena){
-        salida = cadena;
+    public void setSalida(Object cadena){
+        System.out.println(cadena.toString());
+        salida = cadena.toString();
     }
 
 
@@ -186,7 +181,7 @@ class CUP$parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		setSalida(a+"");
+		setSalida(a);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("INICIO",0, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -201,7 +196,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object b = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		RESULT=a+"\n"+postfija+" = "+b;
+		RESULT=a+"\n"+postfija+(flag ? "" :  " = "+b); postfija = "";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("SUBINICIO",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -213,7 +208,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object b = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		RESULT=postfija+" = "+b;
+		RESULT=postfija+(flag ? "" :  " = "+b);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("SUBINICIO",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

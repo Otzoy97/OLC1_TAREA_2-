@@ -1,12 +1,8 @@
 package analizadores;
 import java_cup.runtime.Symbol;
-//import java.util.Queue;
-//import java.util.LinkedList;
-//import calculadora.Resultado;
 
 parser code{:
     public boolean flag = false;
-    //public static Queue<Resultado> colaSalida = new LinkedList();
     public static String postfija = "";
     public String salida = "";
 
@@ -16,13 +12,9 @@ parser code{:
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
         Scanner.Err = "Error Grave. Línea " + (s.right+1) + " Columna " + (s.left+1) + ". Identificador " + s.value;
     }
-/*
-    public void encolar(Object a){
-        colaSalida.add(new Resultado(postfija, String.valueOf(a)));
-        postfija = "";
-    }*/
-    public void setSalida(String cadena){
-        salida = cadena;
+    public void setSalida(Object cadena){
+        System.out.println(cadena.toString());
+        salida = cadena.toString();
     }
 :}
 
@@ -40,12 +32,20 @@ precedence left PLUS, MINUS;
 precedence left PRODUCT, DIVISION;
 
 /*Gramatica*/
+/*
+
+INICIO::= LEXP:cadena {: setSalida(cadena); :};
+
+LEXP::= LEXP:cadena1 EXP:cadena2 puntocoma {: RESULT = cadena1+ "\n" + postfija+" = "+cadena2;:}
+        |EXP:cadena puntocoma {:RESULT = postfija+" = "+cadena; :};
+
+*/
 
 start with INICIO;
 
 INICIO::= SUBINICIO:a {:setSalida(a);:} ;
-SUBINICIO::= SUBINICIO:a TERMINO:b SEMICOLON {:RESULT=a+"\n"+postfija+" = "+b;:}
-| TERMINO:b SEMICOLON {:RESULT=postfija+" = "+b;:};
+SUBINICIO::= SUBINICIO:a TERMINO:b SEMICOLON {:RESULT=a+"\n"+postfija+(flag ? "" :  " = "+b); postfija = "";:}
+| TERMINO:b SEMICOLON {:RESULT=postfija+(flag ? "" :  " = "+b);:};
 TERMINO::= TERMINO:a PLUS TERMINO:b {:if(!flag){RESULT=String.valueOf(Double.parseDouble(a+"")+Double.parseDouble(b+""));} postfija+=" + ";:} 
 |TERMINO:a MINUS TERMINO:b {:if(!flag){RESULT=String.valueOf(Double.parseDouble(a+"")-Double.parseDouble(b+""));} postfija+=" - ";:}
 |TERMINO:a PRODUCT TERMINO:b {:if(!flag){RESULT=String.valueOf(Double.parseDouble(a+"")*Double.parseDouble(b+""));} postfija+=" * ";:}
