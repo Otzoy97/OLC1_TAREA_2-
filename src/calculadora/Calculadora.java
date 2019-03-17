@@ -143,17 +143,18 @@ public class Calculadora extends javax.swing.JFrame {
         // TODO add your handling code here:
         String errores = "";
         analizadores.Scanner scan = new Scanner(new BufferedReader(new StringReader(this.txtInput.getText())));
-        errores += "----------Léxico----------\n" + (Err == null ? "" : Err);
         parser pr = new parser(scan);
         try {
             pr.parse();
         } catch (Exception ex) {
             javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Tarea 2", JOptionPane.ERROR_MESSAGE);
         } finally {
-            errores += "\n----------Sintáctico----------\n" + (Err == null ? "" : Err);
+            
+           errores += "\n----------Errores----------\n" + (Err == null ? "" : Err);
         }
         txtOutput.setText(pr.salida);
         this.txtLog.setText(errores);
+        Err = null;
     }//GEN-LAST:event_btnAnalizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

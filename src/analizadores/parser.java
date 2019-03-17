@@ -123,11 +123,11 @@ public class parser extends java_cup.runtime.lr_parser {
 
  @Override
     public void syntax_error (Symbol s){
-        Scanner.Err = "Error Leve. Línea " + (s.right+1) + " Columna " + (s.left) + ". Identificador " + s.value;
+        Scanner.Err += "Error Leve. Línea " + (s.right) + " Columna " + (s.left) + ". Identificador " + s.value+"\n";
     }
  @Override
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
-        Scanner.Err = "Error Grave. Línea " + (s.right+1) + " Columna " + (s.left) + ". Identificador " + s.value;
+        Scanner.Err += "Error Grave. Línea " + (s.right) + " Columna " + (s.left) + ". Identificador " + s.value+"\n";
     }
     public void setSalida(Object cadena){
         System.out.println(cadena.toString());

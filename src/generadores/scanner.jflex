@@ -3,7 +3,7 @@ package analizadores;
 import java_cup.runtime.Symbol;
 %%
 %{
-    public static String Err;
+    public static String Err="";
 %}
 
 %cupsym sym
@@ -32,4 +32,6 @@ espacio=\t|\f|" "|\r|\n
 "/"      {return new Symbol(sym.DIVISION,yycolumn,yyline,yytext());}
 ";"      {return new Symbol(sym.SEMICOLON,yycolumn,yyline,yytext());}
 
-. {Err = Err + "Error Léxico: Lexema "+yytext()+", Linea "+yyline+", Columna "+yychar+"\n";}
+. {Err += "Error Léxico: Lexema "+yytext()+", Linea "+yyline+", Columna "+yychar+"\n";
+    System.out.println(Err + "Error Léxico: Lexema "+yytext()+", Linea "+yyline+", Columna "+yychar+"\n");
+}

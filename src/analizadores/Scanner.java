@@ -226,7 +226,7 @@ public class Scanner implements java_cup.runtime.Scanner {
   private int zzFinalHighSurrogate = 0;
 
   /* user code: */
-    public static String Err;
+    public static String Err="";
 
 
   /**
@@ -615,7 +615,8 @@ public class Scanner implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { Err = Err + "Error Léxico: Lexema "+yytext()+", Linea "+yyline+", Columna "+yychar+"\n";
+            { Err += "Error Léxico: Lexema "+yytext()+", Linea "+yyline+", Columna "+yychar+"\n";
+    System.out.println(Err + "Error Léxico: Lexema "+yytext()+", Linea "+yyline+", Columna "+yychar+"\n");
             } 
             // fall through
           case 12: break;
